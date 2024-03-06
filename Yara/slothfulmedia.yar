@@ -4,16 +4,15 @@ import "hash"
 rule slothfulmedia
 {
 meta:
-      author = "Adam Burnett, InfoSecEagle"
+      author = "DHS/CISA. Modified by Adam Burnett, InfoSecEagle, alburnett[at]gmail{.}com"
       date = "03 March 2021"
-      description = "Attempts to detects SLOTHFULMEDIA Malware executable"
+      description = "Attempts to detects SLOTHFULMEDIA Malware executable; modified to work in Yara v3.0.9"
       reports = "DHS/CISA MAR AR20-275A"
       TLP = "White"
         hash1 = "2aa26ed63702ac7b49b775eb5ea045c52bc375a46e0763ff5c135d64ed77ff58"
         hash2 = "64d78eec46c9ddd4b9a366de62ba0f2813267dc4393bc79e4c9a51a9bb7e6273"
         hash3 = "927d945476191a3523884f4c0784fb71c16b7738bd7f2abd1e3a198af403f0ae"
         hash4 = "320cf030b3d28fcddcf0a3ef541dea15599d516cb6edaad53ec9be6b708d15c2"
-/*writen to work in Yara 3.0.9, know to work in Yara 4.0.2 (and assumed other versions as well) */
 
 strings:
     $string1 = { FF 88 0E 4E EB BD 8D 85 } 
@@ -22,9 +21,6 @@ strings:
     $string4 = "t_handle" ascii
     $string5 = "www.sdvro.net"
 
-/*  Strings 1 -> 4 obtained by using AutoYara.jar tool https://github.com/NeuromorphicComputationResearchProgram/AutoYara
-    String5 from the unix "strings" command against hash #4.
-*/
 condition:
     uint16(0) == 0x5a4d
         and
