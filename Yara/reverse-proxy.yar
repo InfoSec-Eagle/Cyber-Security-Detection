@@ -36,7 +36,7 @@ rule ReverseSocksProxyHandler_py
 }
 
 
-Invoke_SocksProxy_psm1
+rule Invoke_SocksProxy_psm1
 
 {
     meta:
